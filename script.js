@@ -615,6 +615,7 @@ function createJoker(jonklerIndex) {
   const newImg = document.createElement("img");
   // use paramater to find the image path and paste
   newImg.src = jonklerIndex.path;  
+  newImg.src = 'images/Jokers/tothemoon.png'; 
   // add 2 classes: effect (animations), and downsize (proper size)
   newImg.classList.add('effect', 'downsize');
   // add id of 'slotx' to keep track
