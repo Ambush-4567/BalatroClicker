@@ -581,6 +581,7 @@ function sellJoker(slotNum)
   if (document.getElementById('sellToggle').checked == true) {
 
     let imgPath = slotID.src;
+    document.getElementById('dump6').innerHTML = imgPath;
     // replace image source instances of "/" (forward slash) with spaces
     let slashRemove = imgPath.replace(/\//g, " ");
     // replace image source instances of "." (periods) with spaces
