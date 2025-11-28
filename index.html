@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta-name="viewport" content="width=devices-width, initial-scale=1.0">
+        <title>Balatro</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+       
+</head>
+    <body onload="startUp()">
+      <div class="topbar" id="tips">
+        <p>---</p>
+      </div>
+      <div class="scene1" id="box1">
+        <section class="moved">
+        <div class="topdiv">
+          <img src="images/special/aceclub.png" class="effect scale" id="imgcycle" onclick="cycle()">
+        </div>
+        <div class="buttonwrap">
+         <input type="button" id="butt1" class="bl" value="PLAY" onclick="revealDiv()">
+         <input type="button" id="butt2" class="or" value="OPTIONS">
+         <input type="button" id="butt3" class="re" onclick="openPage()" value="GITHUB">
+         <input type="button" id="butt4" class="gr" value="COLLECTION">
+       </div>
+       <div class="selection" id="hidden">
+        <img src="images/decks/1.png" class="deck" id="d1" onclick="deckSelect(1)">
+        <img src="images/decks/2.png" class="deck" id="d2" onclick="deckSelect(2)">
+        <img src="images/decks/3.png" class="deck" id="d3" onclick="deckSelect(3)">
+        <img src="images/decks/4.png" class="deck" id="d4" onclick="deckSelect(4)">
+        <img src="images/decks/5.png" class="deck" id="d5" onclick="deckSelect(5)">
+        <img src="images/decks/6.png" class="deck" id="d6" onclick="deckSelect(6)">
+        <img src="images/decks/7.png" class="deck" id="d7" onclick="deckSelect(7)">
+        <img src="images/decks/8.png" class="deck" id="d8" onclick="deckSelect(8)">
+        <img src="images/decks/9.png" class="deck" id="d9" onclick="deckSelect(9)">
+        <img src="images/decks/10.png" class="deck" id="d10" onclick="deckSelect(10)">
+        <img src="images/decks/11.png" class="deck" id="d11" onclick="deckSelect(11)">
+        <img src="images/decks/12.png" class="deck" id="d12" onclick="deckSelect(12)">
+        <img src="images/decks/13.png" class="deck" id="d13" onclick="deckSelect(13)">
+        <img src="images/decks/14.png" class="deck" id="d14" onclick="deckSelect(14)">
+        <img src="images/decks/15.png" class="deck" id="d15" onclick="deckSelect(15)">
+       </div>
+       </section>
+      </div>
+      <div class="scene2" id="box2">
+        <div class="float-container">
+          <div class="float-child">
+            <div class="leftDiv">
+              <img src="images/decks/deck (7).png" id="clickCard" class="mainCard" onclick="clickScore()"><br>
+              <p>
+                <span class="blueBord" id="value1">0</span>
+                <span>X</span>
+                <span class="redBord" id="value2">0</span>
+                <span>=</span>
+                <span id="value3">0</span>
+                <span>On Click</span>
+              </p><br>
+              <p>Score:&emsp;<span id="score" class="score">0</span>&emsp;Cash:&emsp;<span class="cash">$<span id="cash">0</span></span>&emsp;<span id="cashUI">&emsp;</span></p><br>
+              <span><select name="suits" id="suitChange">
+                <option value="hearts">Hearts</option>
+                <option value="clubs">Clubs</option>
+                <option value="diamonds">Diamonds</option>
+                <option value="spades">Spades</option>
+              </select>
+              <select name="rank" id="rankChange">
+                <option value="2">2</option>
+              </select>
+              <input type="button" id="submitCard" class="submitCard" value="Confirm" onclick="readValues()"></span>
+              <span class="spaced"><label for="quest">Level Progress:</label>
+              <progress id="quest" value="0" max="1000">Quest</progress>
+              <span>/<span id="requirement">1000</span></span></span>
+              <p class="cash">LV<span id="level">1</span></p>
+              <span id="deck-container">
+                <span id="deck-text">Deck Chosen:</span>
+                <img src="images/decks/8.png" id="deckChosen" class="effect">
+              </span>
+            </div>
+          </div>
+          <div class="float-child">
+            <div class="blue">
+              <div class="jokerBar" id="jokerBar">
+                <div id="toggleDiv">
+                  <label for="sellToggle" class="adjusted">Toggle Selling</label>
+                  <label class="switch">
+                    <input id="sellToggle" type="checkbox" unchecked>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <p class="slotsText"><span id="jokerNum">0</span>/<span id="maxJokers">1</span></p>     
+              </div>
+              <div class="tabs">
+                <button class="tab-button active" onclick="showTab(0)">Shop</button>
+                <button class="tab-button" onclick="showTab(1)">Upgrades</button>
+                <button class="tab-button" onclick="showTab(2)">Info</button>
+                <button class="tab-button" onclick="showTab(3)">Updates</button>
+              </div>
+              <!-- Home tab content -->
+  <div id="home" class="tab-content active-content">
+    <div class="nobreak">
+      <div class="centertext">
+      <span id="cost1" class="priceLabel">$0</span>
+      <img src="images/Jokers/Copy of Jokers2.png" id="shop1" class="effect sizeFix" onclick="purchase1()">
+      <span id="cost2" class="priceLabel">$0</span>
+      <img src="images/Jokers/Copy of Jokers2.png" id="shop2" class="effect sizeFix" onclick="purchase2()"><br>
+      </div>
+      <input type="button" id="reroll" value="Reroll" class="button" onclick="rerollShop()">
+      <p id="tothemoontext"></p>
+      <p id="dump1">0</p>
+      <p id="dump2">0</p>
+      <p id="dump3">0</p>
+      <p id="dump4">0</p>
+      <p id="dump5">0</p>
+      <p id="dump6">0</p>
+    </div>
+  </div>
+
+  <!-- Generate tab content -->
+  <div id="upgradeDiv" class="tab-content floatleft">
+    <div>
+      <input type="button" class="button" id="up1" onclick="addChips()" value="+Chips" disabled>
+      <span class="paragraph">Cost: <span class="cash">$5</span>&emsp;Requirement: <span class="score">LV<span id="chipsLevel">1</span></span>&emsp;Current Level: <span class="blueBord">LV<span id="chipsUpgradeNum">0</span></span></span><br>
+    </div>
+
+    <div>
+      <input type="button" class="button" id="up2" onclick="jokerSlot()" value="Joker Slot" disabled>
+      <span class="paragraph">Cost: <span class="cash">$<span id="jokerUpgradeCost">10</span></span>&emsp;Requirement: <span class="score">LV<span id="chipsLevel">3</span></span>&emsp;Current Level: <span class="blueBord">LV<span id="jokerUpgradeNum">0</span></span></span><br>
+    </div>
+  </div>
+  <!--FAQ section-->
+  <div id="faq" class="tab-content">
+    <p class="quest">1. What does item rarity mean in this game?</p>
+    <p class="ans">Item rarity simply refers to the minimum rarity an item can hold. For exmaple, a fireball is an uncommon item (hence fireball II), but it can go all the way to fireball IV.</p>
+    <p class="quest">2. Does this rando have potato-unlocked weapons?</p>
+    <p class="ans">Yes, if you do not own one simply reroll. For those unaware, some weapons are locked behind winning a run with a character, E.G. the Chopper from winning a run with multitasker.</p>
+  </div>
+
+  <!-- About tab content -->
+  <div id="about" class="tab-content">
+    <p>v1.3: Added a multiple weapon rando and an FAQ section for info. 4/12/24</p>
+    <p>v1.2: 5 update weapons were added to the general list: Icicle, Sharp Tooth, Fireball, Particle Accelerator and the DEX-troyer. 3/12/24</p>
+    <p>v1.1: all 4 update characters are here, and all DLC characters & weapons available in filters. 16/11/24</p>
+    <p>v1.0: release, non-dlc and update features all avilable. 14/11/24</p><br>
+    <p>Check out my github repo: <a class="blue" href="https://github.com/Ambush-4567">Here</a></p>
+      <p>Credits to Fyrope for the framework: <a class="blue" href="https://github.com/fyrope">here</a></p>
+    <p>My Email: <a class="blue" href=mailto:“brooksjohnsonjamez@gmail.com”>Here</a></p>
+  </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </body>
+      </html>
+   

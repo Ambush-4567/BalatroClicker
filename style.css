@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap');
+
+@font-face 
+{
+  font-family: 'balatrofont';
+  src: url('balatrofont/balatro.ttf') format('woff2'),   
+}
+
+body
+{
+  font-family: 'balatrofont', sans-serif;
+  background-image: url('images/main_menu_title.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+button, input[type="button"], select, input[type="select"]
+{
+  cursor: pointer;
+  font-family: 'balatrofont', sans-serif;
+}
+
+.scene1
+{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+}
+
+.topdiv
+{
+  text-align: center;
+}
+
+.buttonwrap
+{
+  height: 90px;
+  width: 400px; 
+  display: flex;
+  gap: 10px;
+  background-color: rgb(99,99,99);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.selection
+{
+  margin-top: 10px;
+  background-color: rgb(99,99,99);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.topbar
+{
+  top: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: aliceblue;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  margin: auto;
+  margin-bottom: 30px;
+  width: 85%;
+  text-align: center;
+}
+
+.moved
+{
+  margin-top: 250px;
+}
+
+.effect
+{
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.deck 
+{
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.effect:hover
+{
+  transform: rotate(5deg);
+}
+
+.effect:active
+{
+  transform: scale(1.1);
+}
+
+.offset 
+{
+  transform: translateY(-40px);
+}
+
+.bl
+{ background-color: cornflowerblue; height: 80px; font-size: 1.5rem; border-radius: 10px; width: 90px; }
+.or
+{ background-color: orange; height: 65px; font-size: 1.2rem; border-radius: 10px; width: 90px;}
+.re
+{ background-color: red; height: 65px; font-size: 1.2rem; border-radius: 10px; width: 75px;}
+.gr
+{ background-color: green; height: 80px; font-size: 1rem; border-radius: 10px; width: 105px;}
+
+button, input[type="button"]:hover
+{
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.float-child {
+    width: 49%;
+    float: left;
+    border: 2px dashed black;
+}  
+
+.mainCard
+{
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.mainCard:hover
+{
+  transform: scale(1.1) rotate(5deg);
+}
+
+.blueBord
+{
+  background-color: rgba(0,141,249,255);
+  border-radius: 4px;
+  padding: 7px;
+}
+
+.redBord
+{
+  background-color: rgba(254,72,61,255);
+  border-radius: 4px;
+  padding: 7px;
+}
+
+.leftDiv
+{
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+  /*top, right, bottom, left */
+  margin: 100 0 100 0;
+}
+
+.score
+{
+  background-color: rgba(241,171,64,255);
+  border-radius: 4px;
+  padding: 7px;
+}
+
+.cash
+{
+  background-color: rgba(136,235,192,255);
+  border-radius: 4px;
+  padding: 7px;
+}
+
+.spaced
+{
+  margin-top: 20px;
+}
+
+progress {
+  /* Remove the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* Custom styles */
+  background-color: lightgray;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: lightgray;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: green;
+  border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+  background-color: green;
+  border-radius: 10px;
+}
+
+.tab-button 
+{
+  padding: 15px 30px;
+  cursor: pointer;
+  background-color: rgba(39, 42, 45, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.tab-button:hover 
+{
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Active tab styling with glow effect */
+.tab-button.active 
+{
+  background-color: #6a5acd;
+  border-bottom: 3px solid #483d8b;
+  box-shadow: 0 0 15px 5px rgba(106, 92, 205, 0.6); /* Glowing effect */
+}
+
+/* Content box inside each tab */
+.tab-content 
+{
+  display: none; /* Hide all tab content initially */
+  margin-top: 20px;
+}
+
+.tab-content.active-content 
+{
+  display: flex; /* Only the active tab content will be visible */
+  flex-direction: column;
+}
+
+ /* Navigation tabs */
+.tabs 
+{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#deck-container
+{
+  display: flex;
+  align-items: center;
+}
+
+#deck-text 
+{
+  margin-right: 5px; 
+}
+
+.floatleft
+{
+  float: left;
+}
+
+.button 
+{
+  width: 100px;
+  border: 3px solid rgba(0,141,249,255);
+  border-radius: 6px;
+  height: 35px;
+}
+
+.paragraph 
+{
+  display: none;
+  align-items: center;
+  /*top, right, bottom, left */
+  padding: 5px 0 5px 4px;
+  font-size: small;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  margin-top: 1px;
+ }
+  
+.button:hover + .paragraph 
+{
+  display: inline-block;
+}
+
+.increase
+{
+  font-size: 1.1rem;
+}
+
+.jokerBar
+{
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  text-align: center;
+  min-width: 10%;
+  max-width: 100%;
+  white-space: nowrap; /* Keeps images on one line */
+  overflow-x: auto; /* Optional: adds scroll if too long */
+  margin: 0 auto;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.sizeFix
+{
+  height: 166px;
+  width: 125px;
+}
+
+.nobreak
+{
+  white-space: nowrap; /* Keeps images on one line */
+  overflow-x: auto;
+  text-align: center;
+}
+
+.priceLabel
+{
+  background-color: rgba(59, 59, 59, 0.8);
+  border-radius: 20px;
+  color: rgba(241,171,64,255);
+  padding: 1px 10px 1px 10px;
+  box-shadow: 1px 7px 2px 1px rgba(0, 0, 0, 0.9);
+  margin: 0 10px 0 10px;
+}
+
+.centertext
+{
+  display: flex;
+  align-items: center;
+}
+
+.downsize
+{
+  width: 110px;
+  height: 146px;
+}
+
+.hide
+{
+  display: none;
+}
+
+/*.slotsText
+{
+  background-color: rgba(3, 138, 255, 1);
+  border-radius: 4px;
+  padding: 7px;
+  width: 20px;
+}*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.adjusted 
+{
+  position: relative;
+  top: 8px;
+}
+
+#cashUI
+{
+  color: rgba(241,171,64);
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
