@@ -1,0 +1,44 @@
+services:
+
+  BACTA-web:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    image: php:8.2-apache
+    container_name: BACTA-php_apache
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - BACTA-db
+
+
+  BACTA-db:
+    image: mariadb:latest
+    container_name: BACTA-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bacta
+      MYSQL_USER: bacta
+      MYSQL_PASSWORD: bacta
+    volumes:
+      - BACTA-db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  BACTA-phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: BACTA-phpmyadmin
+    environment:
+      PMA_HOST: BACTA-db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    depends_on:
+      - BACTA-db
+
+volumes:
+  BACTA-db_data: 
