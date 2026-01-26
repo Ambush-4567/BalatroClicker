@@ -311,11 +311,9 @@ function updateCard(suitValue, rankValue)
     cardImage.src = arr[cardValue].img;
   }
 
-  if (jokers[2].owned == true) {
-    toddCheck(true);
-  }
-  if (jokers[3].owned == true) {
-    stevenCheck(true);
+  if(jokers[2].owned) {
+    toddBonus();
+    document.getElementById('dump2').jokers[2];
   }
 }
 
@@ -347,6 +345,7 @@ function questBar()
     // every level up, if sparetrousers joker is owned, increment the level by 1.
     if (jokers[4].owned == true) {
       game.trouserLevel++;
+      jokers[4].desc = 'Spare Trousers: This card gains +1 mult when level increases. Currently: ' + game.trouserLevel + ' mult.';
     }
     if (game.cardMax < 15) {
       game.cardMax++;
@@ -703,7 +702,6 @@ function oddtodd(add)
   if (add == false) {
     oddtodd.owned = false;
     game.cash += Math.ceil(oddtodd.cost / 2);
-    toddCheck(false);
     return;
   }
   // $4 COST
@@ -714,8 +712,10 @@ function oddtodd(add)
   //Purchase
   game.cash -= oddtodd.cost;
 
-  // oddtodd effect
-  toddCheck(true);
+  //oddtodd effect
+  document.getElementById('dump2').jokers[2];
+  toddBonus();
+
 }
 
 function evensteven(add)
@@ -725,7 +725,6 @@ function evensteven(add)
   if (add == false) {
     evensteven.owned = false;
     game.cash += Math.ceil(evensteven.cost / 2);
-    stevenCheck(false);
     return;
   }
   // $4 COST
@@ -736,8 +735,6 @@ function evensteven(add)
   //Purchase
   game.cash -= evensteven.cost;
 
-  // evensteven effect
-  stevenCheck(true);
 }
 
 function tothemoon(add)
@@ -815,4 +812,21 @@ function cashUI(amount) {
         el.innerHTML = "&emsp;";
         //el.style.display = 'none';
     }, 3000); // wait 3 seconds before disappearing
+}
+
+let bonusUsed = false;
+
+function toddBonus()
+{
+  const bonus = 31;
+
+  if(game.card % 2 != 0) {
+    if(!bonusUsed) {
+      game.chips += bonus;
+      bonusUsed = true;
+    }
+  } else if(bonusUsed) {
+    game.chips -= bonus;
+    bonusUsed = false;
+  }
 }
