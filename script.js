@@ -580,19 +580,10 @@ function sellJoker(slotNum)
   const slotID = document.getElementById("slot" + slotNum);
   if (document.getElementById('sellToggle').checked == true) {
 
-    let imgPath = slotID.src;
-    document.getElementById('dump6').innerHTML = imgPath;
-    // replace image source instances of "/" (forward slash) with spaces
-    let slashRemove = imgPath.replace(/\//g, " ");
-    // replace image source instances of "." (periods) with spaces
-    let periodRemove = slashRemove.replace(/\./g, " ");
-    // create an array of existing words, seperated by spaces
-    let splitArr = periodRemove.split(" ");
-    // index 12 will always refer to the joker's name.
-    let indexName = splitArr[12];
-    document.getElementById('dump3').innerHTML = indexName;
+    // the alt text on this element holds the joker name in plain text, so it can be passed as a parameter using the next line
+    jokerName = slotID.alt;
     //window (searches global functions) indexName (jokername) false (sold)
-    window[indexName](false);
+    window[jokerName](false);
     // -1 owned joker
     game.jokerIndex--;
     // to prevent slot num becoming too much, reset if 0 jonklers
@@ -614,15 +605,16 @@ function createJoker(jonklerIndex) {
   // new image element for visual
   const newImg = document.createElement("img");
   // use paramater to find the image path and paste
-  newImg.src = jonklerIndex.path;  
-  newImg.src = 'images/Jokers/tothemoon.png'; 
+  newImg.src = jonklerIndex.path;   
   // add 2 classes: effect (animations), and downsize (proper size)
   newImg.classList.add('effect', 'downsize');
   // add id of 'slotx' to keep track
   newImg.id = "slot" + localCount;
+  // alt text will provide a way to identify joker type for selling function
+  newImg.alt = jonklerIndex.name;
   newImg.onmouseover = () => { tips.innerHTML = jonklerIndex.desc; };
   newImg.onmouseout  = () => { tips.innerHTML = "&nbsp;"; };
-  document.getElementById('dump4').innerHTML = typeof(jonklerIndex.desc);
+  document.getElementById('dump4').innerHTML = newImg.alt;
 
   // Use a closure to capture the correct slot number
   newImg.onclick = function() {
@@ -810,50 +802,6 @@ function startInterestLoop(jonklerIndex) {
 // Start it
 if (jonklerIndex?.owned) {
     startInterestLoop(jonklerIndex);
-}
-
-let chipsUsed = false;
-
-function toddCheck(query)
-{
-  const toddChips = 31;
-  //document.getElementById('dump5').innerHTML = "value before ifs: " + chipsUsed;
-  if (query == true) {
-    if (!chipsUsed) {
-      if ((game.card % 2) != 0) {
-        chipsUsed = !chipsUsed;
-        //document.getElementById('dump6').innerHTML = "value after ifs: " + chipsUsed;
-        game.chips += toddChips;
-      } 
-    } else {
-      game.chips -= toddChips;
-      chipsUsed = !chipsUsed;
-    }
-  } if (query == false && chipsUsed) {
-    game.chips -= toddChips;
-  }
-}
-
-let multUsed = false;
-
-function stevenCheck(query)
-{
-  const stevenMult = 6;
-  //document.getElementById('dump5').innerHTML = "value before ifs: " + chipsUsed;
-  if (query == true) {
-    if ((game.card % 2) == 0) {
-      if (!multUsed) {
-        multUsed = !multUsed;
-        //document.getElementById('dump6').innerHTML = "value after ifs: " + chipsUsed;
-        game.flatmult += stevenMult;
-      } 
-    } else {
-      game.flatmult -= stevenMult;
-      multUsed = !multUsed;
-    }
-  } if (query == false && multUsed) {
-    game.flatmult -= stevenMult;
-  }
 }
 
 function cashUI(amount) {
