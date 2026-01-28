@@ -104,9 +104,11 @@ function shuffleArr(array) {
   }
 
 let stats = false;
+let bonusUsed;
 
 function startUp()
 {
+  bonusUsed = false;
   document.getElementById('hidden').style.display = 'none';
   document.getElementById('box2').style.display = 'none';
   // add event listeners for hovering over deck icons
@@ -313,7 +315,6 @@ function updateCard(suitValue, rankValue)
 
   if(jokers[2].owned) {
     toddBonus();
-    document.getElementById('dump2').jokers[2];
   }
 }
 
@@ -475,12 +476,10 @@ function rerollShop()
   let tempIndex1 = jokers.findIndex(slot => slot.name === var1);
   jokers[tempIndex1].owned = true;
   costParam1 = jokers[tempIndex1].cost;
-  //document.getElementById('dump1').innerHTML= var1;
   let var2 = getShopResult(shop2, cost2);
   let tempIndex2 = jokers.findIndex(slot => slot.name === var2);
   jokers[tempIndex2].owned = true;
   costParam2 = jokers[tempIndex2].cost;
-  //document.getElementById('dump2').innerHTML= var2;
   if (game.overstock == true) {
     //let var3 = getShopResult(shop3, cost3);
   }
@@ -580,7 +579,7 @@ function sellJoker(slotNum)
   if (document.getElementById('sellToggle').checked == true) {
 
     // the alt text on this element holds the joker name in plain text, so it can be passed as a parameter using the next line
-    jokerName = slotID.alt;
+    let jokerName = slotID.alt;
     //window (searches global functions) indexName (jokername) false (sold)
     window[jokerName](false);
     // -1 owned joker
@@ -613,7 +612,6 @@ function createJoker(jonklerIndex) {
   newImg.alt = jonklerIndex.name;
   newImg.onmouseover = () => { tips.innerHTML = jonklerIndex.desc; };
   newImg.onmouseout  = () => { tips.innerHTML = "&nbsp;"; };
-  document.getElementById('dump4').innerHTML = newImg.alt;
 
   // Use a closure to capture the correct slot number
   newImg.onclick = function() {
@@ -713,7 +711,6 @@ function oddtodd(add)
   game.cash -= oddtodd.cost;
 
   //oddtodd effect
-  document.getElementById('dump2').jokers[2];
   toddBonus();
 
 }
@@ -759,17 +756,12 @@ function tothemoon(add)
 }
 
 function startInterestLoop(jonklerIndex) {
-    if (!jonklerIndex.owned) {
-        document.getElementById('dump5').innerHTML = "Not owned";
-        return;
-    }
 
     let timeLeft = 60;
 
     const timer = setInterval(() => {
         if (!jonklerIndex.owned) {
             clearInterval(timer);
-            document.getElementById('dump5').innerHTML = "Stopped (sold)";
             document.getElementById('tothemoontext').style.display = 'none';
             return;
         }
@@ -785,9 +777,7 @@ function startInterestLoop(jonklerIndex) {
               increase = 10;
             }
             game.cash += increase;
-            document.getElementById('dump3').innerHTML = increase;
             cashUI(increase);
-            document.getElementById('dump6').innerHTML = "Interest! New cash: " + game.cash;
 
             timeLeft = 60; 
         }
@@ -814,19 +804,25 @@ function cashUI(amount) {
     }, 3000); // wait 3 seconds before disappearing
 }
 
-let bonusUsed = false;
+
 
 function toddBonus()
 {
   const bonus = 31;
 
   if(game.card % 2 != 0) {
-    if(!bonusUsed) {
+    if(bonusUsed == false) {
       game.chips += bonus;
       bonusUsed = true;
     }
-  } else if(bonusUsed) {
+  } else if(bonusUsed == true) {
     game.chips -= bonus;
     bonusUsed = false;
   }
+
+  let chipcalc = game.chips += bonus;
+  let cardcalc = game.card % 2 != 0;
+  document.getElementById('dump4').innerHTML = "" + cardcalc + " (true means odd)";
+  document.getElementById('dump5').innerHTML = "" + bonusUsed + " (false means chips arent in effect)";
+  document.getElementById('dump6').innerHTML =  "" + chipcalc + " (chips if bonus was applied)";
 }
