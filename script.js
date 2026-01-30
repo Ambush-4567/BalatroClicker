@@ -314,7 +314,7 @@ function updateCard(suitValue, rankValue)
   }
 
   if(jokers[2].owned) {
-    toddBonus();
+    toddBonus(rankValue);
   }
 }
 
@@ -711,7 +711,7 @@ function oddtodd(add)
   game.cash -= oddtodd.cost;
 
   //oddtodd effect
-  toddBonus();
+  //toddBonus(game.card);
 
 }
 
@@ -806,11 +806,12 @@ function cashUI(amount) {
 
 
 
-function toddBonus()
+function toddBonus(rank)
 {
   const bonus = 31;
+  let cardRank = rank;
 
-  if(game.card % 2 != 0) {
+  if(cardRank % 2 != 0) {
     if(bonusUsed == false) {
       game.chips += bonus;
       bonusUsed = true;
@@ -819,10 +820,4 @@ function toddBonus()
     game.chips -= bonus;
     bonusUsed = false;
   }
-
-  let chipcalc = game.chips += bonus;
-  let cardcalc = game.card % 2 != 0;
-  document.getElementById('dump4').innerHTML = "" + cardcalc + " (true means odd)";
-  document.getElementById('dump5').innerHTML = "" + bonusUsed + " (false means chips arent in effect)";
-  document.getElementById('dump6').innerHTML =  "" + chipcalc + " (chips if bonus was applied)";
 }
