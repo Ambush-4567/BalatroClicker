@@ -434,6 +434,11 @@ input:checked + .slider:before {
 {
   color: rgba(241,171,64);
 }
+
+.left-padding
+{
+  padding-left: 15px;
+}
  
 
 

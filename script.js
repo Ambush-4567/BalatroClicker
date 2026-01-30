@@ -104,11 +104,13 @@ function shuffleArr(array) {
   }
 
 let stats = false;
-let bonusUsed;
+let toddBonusUsed;
+let stevenBonusUsed;
 
 function startUp()
 {
-  bonusUsed = false;
+  toddBonusUsed = false;
+  stevenBonusUsed = false;
   document.getElementById('hidden').style.display = 'none';
   document.getElementById('box2').style.display = 'none';
   // add event listeners for hovering over deck icons
@@ -315,6 +317,10 @@ function updateCard(suitValue, rankValue)
 
   if(jokers[2].owned) {
     toddBonus(rankValue);
+  }
+
+  if(jokers[3].owned) {
+    stevenBonus(rankValue);
   }
 }
 
@@ -812,12 +818,28 @@ function toddBonus(rank)
   let cardRank = rank;
 
   if(cardRank % 2 != 0) {
-    if(bonusUsed == false) {
+    if(toddBonusUsed == false) {
       game.chips += bonus;
-      bonusUsed = true;
+      toddBonusUsed = true;
     }
-  } else if(bonusUsed == true) {
+  } else if(toddBonusUsed == true) {
     game.chips -= bonus;
-    bonusUsed = false;
+    toddBonusUsed = false;
+  }
+}
+
+function stevenBonus(rank)
+{
+  const bonus = 6;
+  let cardRank = rank;
+
+  if(cardRank % 2 == 0) {
+    if(stevenBonusUsed == false) {
+      game.flatmult += bonus;
+      stevenBonusUsed = true;
+    }
+  } else if(stevenBonusUsed == true) {
+    game.flatmult -= bonus;
+    stevenBonusUsed = false;
   }
 }
